@@ -9,6 +9,7 @@ import Select from '../../components/Selection'
 import DatePiker from "../../components/DatePiker"
 import { TextField } from '@material-ui/core'
 import moment from "moment"
+import { color } from "@mui/system";
 
 const FormOne = ({ url }) => {
 
@@ -167,7 +168,7 @@ const FormOne = ({ url }) => {
                     <TextField style={{ width: "100%" }} value={passager.c} placeholder="Adultos mayores" onChange={(e) => { setPassager({ ...passager, c: e.target.value }) }} />
                 </Grid>
                 <Grid item sm={12}>
-                    <button onClick={calculate}>Calcular</button>
+                    <button  className="boton-utravel" onClick={calculate}>Calcular</button>
                 </Grid>
             </Grid>
         </>
