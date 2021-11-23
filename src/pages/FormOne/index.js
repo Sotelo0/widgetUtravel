@@ -18,7 +18,7 @@ const FormOne = ({ url }) => {
     const [dayStart, setDayStart] = useState('') //dia de salida
     const [dayEnd, setDayEnd] = useState('') // dia de regreso
     const [passager, setPassager] = useState({ a: '', b: '', c: '' }) //pasageros
-
+    const [minnextday, setMinnextday] = useState();
     //-----------------------Constantes-------------------
     const placesFrom = ['México']
     const placesOf = ['México', 'USA', 'Canadá', 'Europa', 'Resto del mundo']
@@ -40,10 +40,16 @@ const FormOne = ({ url }) => {
         1998.00,
         2118.00]
 
+    let Dates = new Date().toISOString().split("T")[0];
+    let day = parseInt(Dates.split('-')[2]) + 1
+    let mont = parseInt(Dates.split('-')[1])
+    let year = parseInt(Dates.split('-')[0])
+    let today = `${year}-${mont}-${day}`
+    let nextDay = null;
     //-----------------------Funciones-------------------
 
-    let a = passager.a? a : 0
-    
+    let a = passager.a ? a : 0
+
 
     const calculate = () => {
         let endValue = 0;
@@ -58,7 +64,7 @@ const FormOne = ({ url }) => {
             "Dsalida": dayStart,
             "Dregreso": dayEnd,
             "total": endValue,
-            "passager": parseInt(passager.a? passager.a : 0) + parseInt(passager.b? passager.b : 0) + parseInt(passager.c? passager.c : 0)
+            "passager": parseInt(passager.a ? passager.a : 0) + parseInt(passager.b ? passager.b : 0) + parseInt(passager.c ? passager.c : 0)
         }
 
         let timerInterval
@@ -123,6 +129,18 @@ const FormOne = ({ url }) => {
 
     }
 
+    useEffect(()=>{
+        if(!dayStart){
+            nextDay = today
+        } else{
+            let next = dayStart.split("-")
+            let day = parseInt(next[2]) + 1
+            let mont = parseInt(next[1])
+            let year = parseInt(next[0])
+            setMinnextday(`${year}-${mont}-${day}`)
+        }
+        console.log('------->', minnextday)
+    });
 
     return (
         <>
@@ -134,10 +152,10 @@ const FormOne = ({ url }) => {
                     <Select values={placesOf} valueOf={placeOf} change={setPlaceOf} placeholder={'Destino'}></Select>
                 </Grid>
                 <Grid item sm={6}>
-                    <DatePiker placeholder={'Fecha de salida'}  change={setDayStart} />
+                    <DatePiker min={today} placeholder={'Fecha de salida'} change={setDayStart} />
                 </Grid>
                 <Grid item sm={6}>
-                    <DatePiker placeholder={'Fecha de regreso'} change={setDayEnd} />
+                    <DatePiker min={minnextday} placeholder={'Fecha de regreso'} change={setDayEnd} />
                 </Grid>
                 <Grid item sm={12}>
                     <TextField style={{ width: "100%" }} value={passager.a} placeholder="Adultos" onChange={(e) => { setPassager({ ...passager, a: e.target.value }) }} />

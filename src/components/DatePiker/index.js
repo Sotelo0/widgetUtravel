@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 
-export default ({ placeholder, change }) => {
+export default ({ placeholder, change, min}) => {
 
     let Dates = new Date().toISOString().split("T")[0];
     let day = parseInt(Dates.split('-')[2]) + 1
@@ -17,7 +17,7 @@ export default ({ placeholder, change }) => {
     return (
         <>
             <label for="date">{placeholder} : </label>
-            <input min={today} type="date" id="date" onChange={(e) => {
+            <input min={min} type="date" id="date" onChange={(e) => {
 
                 var fecha1 = moment('2016-07-12');
                 var fecha2 = moment(e.target.value);

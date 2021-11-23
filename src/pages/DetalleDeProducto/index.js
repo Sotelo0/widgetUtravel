@@ -3,7 +3,9 @@ import { Grid, Card } from "@mui/material";
 import CardHeader from '@material-ui/core/CardHeader';
 import { reactLocalStorage } from 'reactjs-localstorage';
 import { TextField } from '@material-ui/core'
+import Breadcrumb from '../../components/Breadcrum';
 import axios from 'axios'
+
 
 import Swal from "sweetalert2";
 
@@ -199,6 +201,9 @@ const DetalleDeProducto = () => {
     return (
         <>
             <Grid container spacing={3} style={{ padding: "1em" }}>
+                <Grid item sm={12} >
+                  <Breadcrumb></Breadcrumb>
+                </Grid>
                 <Grid item sm={4} >
                     <Card variant={"outlined"} style={{ padding: ".5em" }}>
                         <p>Precio del seguro</p>
