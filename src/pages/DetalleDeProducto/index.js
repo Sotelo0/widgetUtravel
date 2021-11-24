@@ -20,10 +20,17 @@ const DetalleDeProducto = () => {
     if (reactLocalStorage.get('DDV')) {
       setLocal(JSON.parse(reactLocalStorage.get('DDV')));
     } else {
-      let x = { "salida": "", "llegada": "", "Dsalida": "", "Dregreso": "", "total": 0 }
+      let x = { "salida": "", "llegada": "", "Dsalida": "", "Dregreso": "", "total": 0, "types": [] }
       setLocal(x)
     }
   }, []);
+
+  useEffect(()=>{
+    let x = [local.types]
+    x.map((i)=>{
+      console.log('-------->', i)
+    });
+  });
 
   const DataPassager = () => {
     //nombre, fecha Nac., género,  email
@@ -35,7 +42,7 @@ const DetalleDeProducto = () => {
       passanger.push(
         <Card variant={'outlined'} style={{ padding: "2em" }}>
           <Grid container spacing={2}>
-            <Grid item sm="3">Pasagero #{i + 1}</Grid>
+            <Grid item sm="3">Datos del pasajero :</Grid>
             <Grid item sm={3}>
 
               <label for={`pasajero numero ${i + 1} Nombre`} >Nombre *</label>
@@ -65,8 +72,8 @@ const DetalleDeProducto = () => {
 
               }}>
                 <option></option>
-                <option>Hombre</option>
-                <option>Mujer</option>
+                <option>Masculino</option>
+                <option>Femenino</option>
               </select>
             </Grid>
           </Grid>
@@ -83,32 +90,33 @@ const DetalleDeProducto = () => {
 
   const createProduct = (e) => {
     e.preventDefault()
-    let swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: false
-    })
+    axiosPet()
+    // let swalWithBootstrapButtons = Swal.mixin({
+    //   customClass: {
+    //     confirmButton: 'btn btn-success',
+    //     cancelButton: 'btn btn-danger'
+    //   },
+    //   buttonsStyling: false
+    // })
 
-    swalWithBootstrapButtons.fire({
-      title: '¡Asegurese de que los datos ingresados sean correctos!',
-      text: "Procederemos a crear el producto!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Seguir',
-      cancelButtonText: 'No, cancelar',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        swalWithBootstrapButtons.fire(
-          'Listo!',
-          'Su producto esta listo.',
-          'success'
-        )
-        axiosPet()
-      }
-    })
+    // swalWithBootstrapButtons.fire({
+    //   title: '¡Asegurese de que los datos ingresados sean correctos!',
+    //   text: "Procederemos a crear el producto!",
+    //   icon: 'warning',
+    //   showCancelButton: true,
+    //   confirmButtonText: 'Seguir',
+    //   cancelButtonText: 'No, cancelar',
+    //   reverseButtons: true
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     swalWithBootstrapButtons.fire(
+    //       'Listo!',
+    //       'Su producto esta listo.',
+    //       'success'
+    //     )
+        
+    //   }
+    // })
   }
 
   const returning = () => {

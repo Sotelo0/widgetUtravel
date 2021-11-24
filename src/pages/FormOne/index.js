@@ -66,7 +66,8 @@ const FormOne = ({ url }) => {
             "Dsalida": dayStart,
             "Dregreso": dayEnd,
             "total": endValue,
-            "passager": parseInt(passager.a ? passager.a : 0) + parseInt(passager.b ? passager.b : 0) + parseInt(passager.c ? passager.c : 0)
+            "passager": parseInt(passager.a ? passager.a : 0) + parseInt(passager.b ? passager.b : 0) + parseInt(passager.c ? passager.c : 0),
+            "types": passager
         }
 
         let timerInterval
@@ -94,8 +95,8 @@ const FormOne = ({ url }) => {
                     reactLocalStorage.set('DDV', JSON.stringify(jsonsData))
                 }
             })
-        } else{
-            Swal.fire({text: "Por favor indica el numero de pasajeros" })
+        } else {
+            Swal.fire({ text: "Por favor indica el numero de pasajeros" })
         }
     }
 
@@ -158,9 +159,11 @@ const FormOne = ({ url }) => {
         <form onSubmit={calculate}>
             <Grid container spacing={2}>
                 <Grid item sm={12}>
+                    <label>Origen</label>
                     <Select values={placesFrom} valueOf={placeFrom} change={setPlaceFrom} placeholder={'Origen'}></Select>
                 </Grid>
                 <Grid item sm={12}>
+                    <label>Destino</label>
                     <Select values={placesOf} valueOf={placeOf} change={setPlaceOf} placeholder={'Destino'}></Select>
                 </Grid>
                 <Grid item sm={6}>
@@ -170,6 +173,7 @@ const FormOne = ({ url }) => {
                     <DatePiker min={minnextday} placeholder={'Fecha de regreso'} change={setDayEnd} />
                 </Grid>
                 <Grid item sm={12}>
+                    <label>Numero de Adultos</label>
                     {/* <TextField style={{ width: "100%" }} value={passager.a} placeholder="Adultos" onChange={(e) => { setPassager({ ...passager, a: e.target.value }) }} /> */}
                     <select required style={{ width: "100%" }} placeholder="Adultos" onChange={(e) => { console.log(e.target.value); setPassager({ ...passager, a: e.target.value }) }}>
                         <option value="0"></option>
@@ -191,6 +195,7 @@ const FormOne = ({ url }) => {
                     </select>
                 </Grid>
                 <Grid item sm={12}>
+                    <label>Numero de Niños</label>
                     {/* <TextField style={{ width: "100%" }} value={passager.b} placeholder="Niños" onChange={(e) => { setPassager({ ...passager, b: e.target.value }) }} /> */}
                     <select style={{ width: "100%" }} placeholder="Adultos" onChange={(e) => { console.log(e.target.value); setPassager({ ...passager, b: e.target.value }) }}>
                         <option value="0"></option>
@@ -212,6 +217,7 @@ const FormOne = ({ url }) => {
                     </select>
                 </Grid>
                 <Grid item sm={12}>
+                <label>Numero de Adultos mayores</label>
                     {/* <TextField style={{ width: "100%" }} value={passager.c} placeholder="Adultos mayores" onChange={(e) => { setPassager({ ...passager, c: e.target.value }) }} /> */}
                     <select style={{ width: "100%" }} placeholder="Adultos" onChange={(e) => { console.log(e.target.value); setPassager({ ...passager, c: e.target.value }) }}>
                         <option value="0"></option>
