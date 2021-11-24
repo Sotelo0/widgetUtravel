@@ -10,16 +10,16 @@ const breadCrums = () => {
       direction="row"
       alignItems="center"
       justifyContent="center"
-      style={{padding: "2em", backgroundColor:"#CCDAE3"}}
+      style={{padding: "2em"}}
     >
       <Grid item sm={2}>
-        <CheckCircleIcon /> Cotizador
+        <CheckCircleIcon /> <span className="cotiza-utravel">Cotizador</span>
       </Grid>
       <Grid item sm={2}>
-        <CheckCircleIcon color={'primary'} /> Informacion
+        <CheckCircleIcon color={'primary'} /> <span className="cotiza-utravel">Información</span>
       </Grid>
       <Grid item sm={2}>
-        <CheckCircleIcon color={'green'} /> Checkout
+        <CheckCircleIcon color={'green'} /> <span className="cotiza-utravel">Checkout</span>
       </Grid>
     </Grid>
   )
