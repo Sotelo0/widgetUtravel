@@ -191,7 +191,7 @@ const DetalleDeProducto = () => {
         "enabledMethods": []
       }
     });
-
+    //https://panel.bilda.bar/site/ece4ebdd/ecommerce/Seguro-de-viajero-p419854125?nee=true&ed=true&showOriginal=true&preview=true&dm_try_mode=true&dm_checkSync=1&dm_device=desktop
     var config = {
       method: 'post',
       url: 'https://app.ecwid.com/api/v3/66828634/products?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf',
@@ -214,7 +214,9 @@ const DetalleDeProducto = () => {
   const redirect = (id) => {
     var config = {
       method: 'get',
-      url: `https://app.ecwid.com/api/v3/66828634/products/${id}?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf`,
+      //
+      //https://app.ecwid.com/api/v3/66828634/products/${id}?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf
+      url: `https://panel.bilda.bar/site/ece4ebdd/ecommerce/${id}?nee=true&ed=true&showOriginal=true&preview=true&dm_try_mode=true&dm_checkSync=1&dm_device=desktop`,
       headers: {
         'Content-Type': 'application/json'
       },
