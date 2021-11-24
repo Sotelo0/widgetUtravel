@@ -4,7 +4,7 @@ import DetalleDeProducto from "./pages/DetalleDeProducto";
 
 const Pages = ({url}) => {
     //use states 
-    const [steep, setSteep] = useState(-1);
+    const [steep, setSteep] = useState(1);
 
 
 
