@@ -245,14 +245,18 @@ const DetalleDeProducto = () => {
         </Grid>
         <Grid item sm={7} >
           <Card style={{ padding: ".5em" }}>
-            <p>Saliendo de :</p>
-            <p>{local.salida}</p>
-            <p>Llegando a :</p>
-            <p>{local.llegada}</p>
-            <p>Fecha de salida :</p>
-            <p>{local.Dsalida}</p>
-            <p>Fecha de regreso :</p>
-            <p>{local.Dregreso}</p>
+                          <div className="fechas-utravel">
+                          <p className="lugar-utravel">Saliendo de :</p>
+                          <p className="luocal-utravel">{local.salida}</p>
+                          <p className="lugar-utravel">Llegando a :</p>
+                          <p className="luocal-utravel">{local.llegada}</p>
+                        </div>
+                        <div className="fechas-utravel-01">
+                          <p className="lugar-utravel">Fecha de salida :</p>
+                          <p className="luocal-utravel">{local.Dsalida}</p>
+                          <p className="lugar-utravel">Fecha de regreso :</p>
+                          <p className="luocal-utravel">{local.Dregreso}</p>
+                        </div>
 
           </Card>
         </Grid>
@@ -264,12 +268,18 @@ const DetalleDeProducto = () => {
                   <DataPassager />
 
                   <Grid container>
-                    <Grid item>
-                      <button onClick={redirecReturning}>Volver</button>
-                    </Grid>
-                    <Grid item>
+                    <div className="botones-utravel">
+                      <div className="volver-utravel">
+                      <Grid item>
+                        <button onClick={redirecReturning}>Volver</button>
+                      </Grid>
+                      </div>
+                      <div className="seguir-utravel">
+                      <Grid item>
                       <input type="submit" value="Seguir" style={{color:"#000"}}></input>
-                    </Grid>
+                      </Grid>
+                      </div>
+                    </div>
                   </Grid>
                 </form>
               </Grid>
