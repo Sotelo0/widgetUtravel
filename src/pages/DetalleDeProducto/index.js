@@ -34,29 +34,42 @@ const DetalleDeProducto = () => {
 
       passanger.push(
         <Card variant={'outlined'} style={{ padding: "2em" }}>
-          Pasagero #{i + 1}
-          <input required="true" helperText="Nombre" id={`pasajero numero ${i + 1} Nombre`} onChange={(e) => {
-            let key = e.target.id;
-            let value = e.target.value;
-            setData({ ...data, [key]: value })
+          <Grid container spacing={2}>
+            <Grid item sm="3">Pasagero #{i + 1}</Grid>
+            <Grid item sm={3}>
 
-          }} ></input>
-          <input required="true" type="date" helperText="Fecha de nacimiento" id={`pasajero numero ${i + 1} Fecha de nacimiento`} onChange={(e) => {
-            let key = e.target.id;
-            let value = e.target.value;
-            setData({ ...data, [key]: value })
+              <label for={`pasajero numero ${i + 1} Nombre`} >Nombre *</label>
+              <input style={{width:"100%"}}  required="true" id={`pasajero numero ${i + 1} Nombre`} onChange={(e) => {
+                let key = e.target.id;
+                let value = e.target.value;
+                setData({ ...data, [key]: value })
 
-          }}></input  >
-          <select required="true" helperText="Sexo" id={`pasajero numero ${i + 1} Sexo`} onChange={(e) => {
-            let key = e.target.id;
-            let value = e.target.value;
-            setData({ ...data, [key]: value })
+              }} ></input>
+            </Grid>
+            <Grid item sm={3}>
+              <label for={`pasajero numero ${i + 1} Fecha de nacimiento`} >Fecha de nacimiento *</label>
+              <input data-date-inline-picker="true"  style={{width:"100%"}}  placeholder="Fecha de nacimiento" required="true" type="date" helperText="Fecha de nacimiento" id={`pasajero numero ${i + 1} Fecha de nacimiento`} onChange={(e) => {
+                let key = e.target.id;
+                let value = e.target.value;
+                setData({ ...data, [key]: value })
 
-          }}>
-            <option></option>
-            <option>Hombre</option>
-            <option>Mujer</option>
-          </select>
+              }}></input  >
+
+            </Grid>
+            <Grid item sm={3}>
+              <label for={`pasajero numero ${i + 1} Sexo`}>Sexo *</label>
+              <select style={{width:"100%"}} required="true" helperText="Sexo" id={`pasajero numero ${i + 1} Sexo`} onChange={(e) => {
+                let key = e.target.id;
+                let value = e.target.value;
+                setData({ ...data, [key]: value })
+
+              }}>
+                <option></option>
+                <option>Hombre</option>
+                <option>Mujer</option>
+              </select>
+            </Grid>
+          </Grid>
         </Card >)
     }
 
