@@ -3,13 +3,14 @@ import { TextField, MenuItem } from '@material-ui/core'
 
 const selection = ({ values, valueOf, change, placeholder }) => {
     return (
-        <TextField style={{ width: "100%"}} select value={valueOf} onChange={(e) => { change(e.target.value) }} label={placeholder}>
+        <select required style={{ width: "100%"}} select value={valueOf} onChange={(e) => { change(e.target.value) }} label={placeholder}>
+            <option value=""></option>
             {values.map((option) => (
-                <MenuItem key={option} value={option}>
+                <option key={option} value={option}>
                     {option}
-                </MenuItem>
+                </option>
             ))}
-        </TextField>
+        </select>
     );
 }
 

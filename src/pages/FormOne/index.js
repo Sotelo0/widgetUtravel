@@ -52,7 +52,8 @@ const FormOne = ({ url }) => {
     let a = passager.a ? a : 0
 
 
-    const calculate = () => {
+    const calculate = (e) => {
+        e.preventDefault()
         let endValue = 0;
         let childrens = children();
         let day = calculateDay()
@@ -69,29 +70,33 @@ const FormOne = ({ url }) => {
         }
 
         let timerInterval
-        Swal.fire({
-            title: 'Estamos creando tu paquete!',
-            html: '',
-            timer: 500,
-            timerProgressBar: true,
-            didOpen: () => {
-                Swal.showLoading()
-                const b = Swal.getHtmlContainer().querySelector('b')
-                timerInterval = setInterval(() => {
-                    // b.textContent = Swal.getTimerLeft()
-                }, 50)
-            },
-            willClose: () => {
-                clearInterval(timerInterval)
-                window.location.href = url;
+        if (req) {
+            Swal.fire({
+                title: 'Estamos creando tu paquete!',
+                html: '',
+                timer: 500,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        // b.textContent = Swal.getTimerLeft()
+                    }, 50)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                    window.location.href = url;
 
-            }
-        }).then((result) => {
-            /* Read more about handling dismissals below */
-            if (result.dismiss === Swal.DismissReason.timer) {
-                reactLocalStorage.set('DDV', JSON.stringify(jsonsData))
-            }
-        })
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    reactLocalStorage.set('DDV', JSON.stringify(jsonsData))
+                }
+            })
+        } else{
+            Swal.fire({text: "Por favor indica el numero de pasajeros" })
+        }
     }
 
     const children = () => {
@@ -143,8 +148,14 @@ const FormOne = ({ url }) => {
         console.log('------->', minnextday)
     });
 
+    const [req, setReq] = useState(false);
+    useEffect(() => {
+        if (passager.a != '' || passager.b != '' || passager.c != '') {
+            setReq(true)
+        }
+    })
     return (
-        <>
+        <form onSubmit={calculate}>
             <Grid container spacing={2}>
                 <Grid item sm={12}>
                     <Select values={placesFrom} valueOf={placeFrom} change={setPlaceFrom} placeholder={'Origen'}></Select>
@@ -160,7 +171,7 @@ const FormOne = ({ url }) => {
                 </Grid>
                 <Grid item sm={12}>
                     {/* <TextField style={{ width: "100%" }} value={passager.a} placeholder="Adultos" onChange={(e) => { setPassager({ ...passager, a: e.target.value }) }} /> */}
-                    <select style={{ width: "100%" }} placeholder="Adultos" onChange={(e) => { console.log(e.target.value); setPassager({ ...passager, a: e.target.value }) }}>
+                    <select required style={{ width: "100%" }} placeholder="Adultos" onChange={(e) => { console.log(e.target.value); setPassager({ ...passager, a: e.target.value }) }}>
                         <option value="0"></option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -222,10 +233,11 @@ const FormOne = ({ url }) => {
                     </select>
                 </Grid>
                 <Grid item sm={12}>
-                    <button className="boton-utravel" onClick={calculate}>Calcular</button>
+                    <input type="submit" value="Cotizar" className="boton-utravel"></input>
+                    {/* <button className="boton-utravel" onClick={calculate}>Calcular</button> */}
                 </Grid>
             </Grid>
-        </>
+        </form>
     )
 
 }

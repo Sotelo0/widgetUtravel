@@ -260,7 +260,7 @@ const DetalleDeProducto = () => {
                       <button onClick={redirecReturning}>Volver</button>
                     </Grid>
                     <Grid item>
-                      <input type="submit" value="Seguir"></input>
+                      <input type="submit" value="Seguir" style={{color:"#000"}}></input>
                     </Grid>
                   </Grid>
                 </form>

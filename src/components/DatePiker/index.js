@@ -17,7 +17,7 @@ export default ({ placeholder, change, min}) => {
     return (
         <>
             <label for="date">{placeholder} : </label>
-            <input min={min} type="date" id="date" onChange={(e) => {
+            <input required min={min} type="date" id="date" onChange={(e) => {
 
                 var fecha1 = moment('2016-07-12');
                 var fecha2 = moment(e.target.value);
