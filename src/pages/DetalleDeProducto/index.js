@@ -191,7 +191,7 @@ const DetalleDeProducto = () => {
         "enabledMethods": []
       }
     });
-    //https://panel.bilda.bar/site/ece4ebdd/ecommerce/Seguro-de-viajero-p419854125?nee=true&ed=true&showOriginal=true&preview=true&dm_try_mode=true&dm_checkSync=1&dm_device=desktop
+
     var config = {
       method: 'post',
       url: 'https://app.ecwid.com/api/v3/66828634/products?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf',
@@ -214,9 +214,7 @@ const DetalleDeProducto = () => {
   const redirect = (id) => {
     var config = {
       method: 'get',
-      //
-      //https://app.ecwid.com/api/v3/66828634/products/${id}?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf
-      url: `https://panel.bilda.bar/site/ece4ebdd/ecommerce/${id}?nee=true&ed=true&showOriginal=true&preview=true&dm_try_mode=true&dm_checkSync=1&dm_device=desktop`,
+      url: `https://app.ecwid.com/api/v3/66828634/products/${id}?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf`,
       headers: {
         'Content-Type': 'application/json'
       },
@@ -247,18 +245,14 @@ const DetalleDeProducto = () => {
         </Grid>
         <Grid item sm={7} >
           <Card style={{ padding: ".5em" }}>
-                          <div className="fechas-utravel">
-                          <p className="lugar-utravel">Saliendo de :</p>
-                          <p className="luocal-utravel">{local.salida}</p>
-                          <p className="lugar-utravel">Llegando a :</p>
-                          <p className="luocal-utravel">{local.llegada}</p>
-                        </div>
-                        <div className="fechas-utravel-01">
-                          <p className="lugar-utravel">Fecha de salida :</p>
-                          <p className="luocal-utravel">{local.Dsalida}</p>
-                          <p className="lugar-utravel">Fecha de regreso :</p>
-                          <p className="luocal-utravel">{local.Dregreso}</p>
-                        </div>
+            <p>Saliendo de :</p>
+            <p>{local.salida}</p>
+            <p>Llegando a :</p>
+            <p>{local.llegada}</p>
+            <p>Fecha de salida :</p>
+            <p>{local.Dsalida}</p>
+            <p>Fecha de regreso :</p>
+            <p>{local.Dregreso}</p>
 
           </Card>
         </Grid>
@@ -270,18 +264,12 @@ const DetalleDeProducto = () => {
                   <DataPassager />
 
                   <Grid container>
-                    <div className="botones-utravel">
-                      <div className="volver-utravel">
-                      <Grid item>
-                        <button onClick={redirecReturning}>Volver</button>
-                      </Grid>
-                      </div>
-                      <div className="seguir-utravel">
-                      <Grid item>
+                    <Grid item>
+                      <button onClick={redirecReturning}>Volver</button>
+                    </Grid>
+                    <Grid item>
                       <input type="submit" value="Seguir" style={{color:"#000"}}></input>
-                      </Grid>
-                      </div>
-                    </div>
+                    </Grid>
                   </Grid>
                 </form>
               </Grid>
