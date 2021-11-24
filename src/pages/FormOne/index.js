@@ -160,7 +160,8 @@ const FormOne = ({ url }) => {
                 </Grid>
                 <Grid item sm={12}>
                     {/* <TextField style={{ width: "100%" }} value={passager.a} placeholder="Adultos" onChange={(e) => { setPassager({ ...passager, a: e.target.value }) }} /> */}
-                    <select style={{ width: "100%" }}  placeholder="Adultos" onChange={(e) => {console.log(e.target.value); setPassager({ ...passager, a: e.target.value }) }}>
+                    <select style={{ width: "100%" }} placeholder="Adultos" onChange={(e) => { console.log(e.target.value); setPassager({ ...passager, a: e.target.value }) }}>
+                        <option value="0"></option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -180,7 +181,8 @@ const FormOne = ({ url }) => {
                 </Grid>
                 <Grid item sm={12}>
                     {/* <TextField style={{ width: "100%" }} value={passager.b} placeholder="Niños" onChange={(e) => { setPassager({ ...passager, b: e.target.value }) }} /> */}
-                    <select style={{ width: "100%" }}  placeholder="Adultos" onChange={(e) => {console.log(e.target.value); setPassager({ ...passager, b: e.target.value }) }}>
+                    <select style={{ width: "100%" }} placeholder="Adultos" onChange={(e) => { console.log(e.target.value); setPassager({ ...passager, b: e.target.value }) }}>
+                        <option value="0"></option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -200,7 +202,8 @@ const FormOne = ({ url }) => {
                 </Grid>
                 <Grid item sm={12}>
                     {/* <TextField style={{ width: "100%" }} value={passager.c} placeholder="Adultos mayores" onChange={(e) => { setPassager({ ...passager, c: e.target.value }) }} /> */}
-                    <select style={{ width: "100%" }}  placeholder="Adultos" onChange={(e) => {console.log(e.target.value); setPassager({ ...passager, c: e.target.value }) }}>
+                    <select style={{ width: "100%" }} placeholder="Adultos" onChange={(e) => { console.log(e.target.value); setPassager({ ...passager, c: e.target.value }) }}>
+                        <option value="0"></option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
