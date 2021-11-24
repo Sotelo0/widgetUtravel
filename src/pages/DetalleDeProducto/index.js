@@ -34,33 +34,31 @@ const DetalleDeProducto = () => {
 
       passanger.push(<Grid item sm={12} style={{ marginBottom: "2em" }}>
 
-        <form>
-          <Card variant={'outlined'} style={{ padding: "2em" }}>
-            Pasagero #{i + 1}
-            <TextField required="true" helperText="Nombre" id={`pasajero numero ${i + 1} Nombre`} onChange={(e) => {
-              let key = e.target.id;
-              let value = e.target.value;
-              setData({ ...data, [key]: value })
+        <Card variant={'outlined'} style={{ padding: "2em" }}>
+          Pasagero #{i + 1}
+          <input required="true" helperText="Nombre" id={`pasajero numero ${i + 1} Nombre`} onChange={(e) => {
+            let key = e.target.id;
+            let value = e.target.value;
+            setData({ ...data, [key]: value })
 
-            }} ></TextField>
-            <input required="true" type="date" helperText="Fecha de nacimiento" id={`pasajero numero ${i + 1} Fecha de nacimiento`} onChange={(e) => {
-              let key = e.target.id;
-              let value = e.target.value;
-              setData({ ...data, [key]: value })
+          }} ></input>
+          <input required="true" type="date" helperText="Fecha de nacimiento" id={`pasajero numero ${i + 1} Fecha de nacimiento`} onChange={(e) => {
+            let key = e.target.id;
+            let value = e.target.value;
+            setData({ ...data, [key]: value })
 
-            }}></input  >
-            <select required="true" helperText="Sexo" id={`pasajero numero ${i + 1} Sexo`} onChange={(e) => {
-              let key = e.target.id;
-              let value = e.target.value;
-              setData({ ...data, [key]: value })
+          }}></input  >
+          <select required="true" helperText="Sexo" id={`pasajero numero ${i + 1} Sexo`} onChange={(e) => {
+            let key = e.target.id;
+            let value = e.target.value;
+            setData({ ...data, [key]: value })
 
-            }}>
-              <option></option>
-              <option>Hombre</option>
-              <option>Mujer</option>
-            </select>
-          </Card >
-        </form>
+          }}>
+            <option></option>
+            <option>Hombre</option>
+            <option>Mujer</option>
+          </select>
+        </Card >
       </Grid>)
     }
 
@@ -72,8 +70,8 @@ const DetalleDeProducto = () => {
     return passanger;
   }
 
-  const createProduct = () => {
-
+  const createProduct = (e) => {
+    e.preventDefault()
     let swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -115,7 +113,7 @@ const DetalleDeProducto = () => {
       text: "¡Volveremos a la pagina de inicio!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Seguir',
+      confirmButtonText: 'Si',
       cancelButtonText: 'No, cancelar',
       reverseButtons: true
     }).then((result) => {
@@ -125,7 +123,7 @@ const DetalleDeProducto = () => {
     })
   }
 
-  const redirecReturning = ()=>{
+  const redirecReturning = () => {
     window.location.href = "/"
   }
   const axiosPet = () => {
@@ -242,16 +240,20 @@ const DetalleDeProducto = () => {
         <Grid item sm={12}>
           <Card variant={"outlined"} style={{ padding: ".5em" }}>
             <Grid container style={{ padding: "2em", height: "50vh", overflowY: "scroll" }}>
-              <DataPassager />
+              <form onSubmit={createProduct}>
+                <DataPassager />
+
+                <Grid container>
+                  <Grid item>
+                    <button onClick={redirecReturning}>Volver</button>
+                  </Grid>
+                  <Grid item>
+                    <input type="submit" value="Seguir"></input>
+                  </Grid>
+                </Grid>
+              </form>
             </Grid>
-            <Grid container>
-              <Grid item>
-                <button onClick={returning}>Volver</button>
-              </Grid>
-              <Grid item>
-                <button type="submit" onClick={createProduct}>Seguir</button>
-              </Grid>
-            </Grid>
+
           </Card>
         </Grid>
       </Grid>
