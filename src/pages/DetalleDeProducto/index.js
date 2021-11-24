@@ -32,8 +32,7 @@ const DetalleDeProducto = () => {
 
     for (let i = 0; i < local.passager; i++) {
 
-      passanger.push(<Grid item sm={12} style={{ marginBottom: "2em" }}>
-
+      passanger.push(
         <Card variant={'outlined'} style={{ padding: "2em" }}>
           Pasagero #{i + 1}
           <input required="true" helperText="Nombre" id={`pasajero numero ${i + 1} Nombre`} onChange={(e) => {
@@ -58,8 +57,7 @@ const DetalleDeProducto = () => {
             <option>Hombre</option>
             <option>Mujer</option>
           </select>
-        </Card >
-      </Grid>)
+        </Card >)
     }
 
     useEffect(() => {
@@ -240,18 +238,20 @@ const DetalleDeProducto = () => {
         <Grid item sm={12}>
           <Card variant={"outlined"} style={{ padding: ".5em" }}>
             <Grid container style={{ padding: "2em", height: "50vh", overflowY: "scroll" }}>
-              <form onSubmit={createProduct}>
-                <DataPassager />
+              <Grid item sm={12} style={{ marginBottom: "2em" }}>
+                <form onSubmit={createProduct}>
+                  <DataPassager />
 
-                <Grid container>
-                  <Grid item>
-                    <button onClick={redirecReturning}>Volver</button>
+                  <Grid container>
+                    <Grid item>
+                      <button onClick={redirecReturning}>Volver</button>
+                    </Grid>
+                    <Grid item>
+                      <input type="submit" value="Seguir"></input>
+                    </Grid>
                   </Grid>
-                  <Grid item>
-                    <input type="submit" value="Seguir"></input>
-                  </Grid>
-                </Grid>
-              </form>
+                </form>
+              </Grid>
             </Grid>
 
           </Card>
