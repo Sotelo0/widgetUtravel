@@ -130,10 +130,10 @@ const FormOne = ({ url }) => {
 
     }
 
-    useEffect(()=>{
-        if(!dayStart){
+    useEffect(() => {
+        if (!dayStart) {
             nextDay = today
-        } else{
+        } else {
             let next = dayStart.split("-")
             let day = parseInt(next[2]) + 1
             let mont = parseInt(next[1])
@@ -159,16 +159,67 @@ const FormOne = ({ url }) => {
                     <DatePiker min={minnextday} placeholder={'Fecha de regreso'} change={setDayEnd} />
                 </Grid>
                 <Grid item sm={12}>
-                    <TextField style={{ width: "100%" }} value={passager.a} placeholder="Adultos" onChange={(e) => { setPassager({ ...passager, a: e.target.value }) }} />
+                    {/* <TextField style={{ width: "100%" }} value={passager.a} placeholder="Adultos" onChange={(e) => { setPassager({ ...passager, a: e.target.value }) }} /> */}
+                    <select style={{ width: "100%" }}  placeholder="Adultos" onChange={(e) => {console.log(e.target.value); setPassager({ ...passager, a: e.target.value }) }}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                    </select>
                 </Grid>
                 <Grid item sm={12}>
-                    <TextField style={{ width: "100%" }} value={passager.b} placeholder="Niños" onChange={(e) => { setPassager({ ...passager, b: e.target.value }) }} />
+                    {/* <TextField style={{ width: "100%" }} value={passager.b} placeholder="Niños" onChange={(e) => { setPassager({ ...passager, b: e.target.value }) }} /> */}
+                    <select style={{ width: "100%" }}  placeholder="Adultos" onChange={(e) => {console.log(e.target.value); setPassager({ ...passager, b: e.target.value }) }}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                    </select>
                 </Grid>
                 <Grid item sm={12}>
-                    <TextField style={{ width: "100%" }} value={passager.c} placeholder="Adultos mayores" onChange={(e) => { setPassager({ ...passager, c: e.target.value }) }} />
+                    {/* <TextField style={{ width: "100%" }} value={passager.c} placeholder="Adultos mayores" onChange={(e) => { setPassager({ ...passager, c: e.target.value }) }} /> */}
+                    <select style={{ width: "100%" }}  placeholder="Adultos" onChange={(e) => {console.log(e.target.value); setPassager({ ...passager, c: e.target.value }) }}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                    </select>
                 </Grid>
                 <Grid item sm={12}>
-                    <button  className="boton-utravel" onClick={calculate}>Calcular</button>
+                    <button className="boton-utravel" onClick={calculate}>Calcular</button>
                 </Grid>
             </Grid>
         </>
