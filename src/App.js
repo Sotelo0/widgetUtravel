@@ -4,7 +4,7 @@ import DetalleDeProducto from "./pages/DetalleDeProducto";
 
 const Pages = ({url}) => {
     //use states 
-    const [steep, setSteep] = useState(1);
+    const [steep, setSteep] = useState(-1);
 
 
 
@@ -12,10 +12,7 @@ const Pages = ({url}) => {
     return (
         <>
             {steep === -1 && (<FormOne url={url}  />)}
-            {steep === 1 && (<DetalleDeProducto url={url} />)}
-            
-
-            
+            {steep === 1 && (<DetalleDeProducto url={url} />)} 
         </>
     )
 }
@@ -24,7 +21,7 @@ const Pages = ({url}) => {
 
 class App extends Component {
     static defaultProps = {
-        url: "/home/site/ece4ebdd/widget"
+        url: "http://utravel.bilda.bar/widget"
       };
     render() {
         return (

@@ -21,10 +21,10 @@ const FormOne = ({ url }) => {
     const [passager, setPassager] = useState({ a: '', b: '', c: '' }) //pasageros
     const [minnextday, setMinnextday] = useState();
     //-----------------------Constantes-------------------
-    const placesFrom = ['México']
-    const placesOf = ['México', 'USA', 'Canadá', 'Europa', 'Resto del mundo']
+    const placesFrom = []
+    const placesOf = ['México', 'USA / Canadá', 'Europa', 'Resto del mundo']
     const prices = [
-        0,
+        299.00,
         299.00,
         415.00,
         531.00,
@@ -42,7 +42,7 @@ const FormOne = ({ url }) => {
         2118.00]
 
     let Dates = new Date().toISOString().split("T")[0];
-    let day = parseInt(Dates.split('-')[2]) + 1
+    let day = parseInt(Dates.split('-')[2]) 
     let mont = parseInt(Dates.split('-')[1])
     let year = parseInt(Dates.split('-')[0])
     let today = `${year}-${mont}-${day}`
@@ -61,7 +61,7 @@ const FormOne = ({ url }) => {
         let value = grandparents + childrens
         endValue = value + (prices[day] * passager.a)
         let jsonsData = {
-            "salida": placeFrom,
+            "salida": 'México',
             "llegada": placeOf,
             "Dsalida": dayStart,
             "Dregreso": dayEnd,
@@ -160,22 +160,22 @@ const FormOne = ({ url }) => {
             <Grid container spacing={2}>
                 <Grid item sm={12}>
                     <label>Origen</label>
-                    <Select values={placesFrom} valueOf={placeFrom} change={setPlaceFrom} placeholder={'Origen'}></Select>
+                    <Select values={placesFrom} valueOf={placeFrom} defaults={"México"} change={setPlaceFrom} placeholder={'Origen'}></Select>
                 </Grid>
                 <Grid item sm={12}>
                     <label>Destino</label>
-                    <Select values={placesOf} valueOf={placeOf} change={setPlaceOf} placeholder={'Destino'}></Select>
+                    <Select values={placesOf} valueOf={placeOf} defaults={""} change={setPlaceOf} placeholder={'Destino'}></Select>
                 </Grid>
                 <Grid item sm={6}>
                     <DatePiker min={today} placeholder={'Fecha de salida'} change={setDayStart} />
                 </Grid>
                 <Grid item sm={6}>
-                    <DatePiker min={minnextday} placeholder={'Fecha de regreso'} change={setDayEnd} />
+                    <DatePiker min={today} placeholder={'Fecha de regreso'} change={setDayEnd} />
                 </Grid>
                 <Grid item sm={12}>
                     <label>Numero de Adultos</label>
-                    {/* <TextField style={{ width: "100%" }} value={passager.a} placeholder="Adultos" onChange={(e) => { setPassager({ ...passager, a: e.target.value }) }} /> */}
-                    <select required style={{ width: "100%" }} placeholder="Adultos" onChange={(e) => { console.log(e.target.value); setPassager({ ...passager, a: e.target.value }) }}>
+                    <TextField style={{ width: "100%" }} value={passager.a} placeholder="Adultos" onChange={(e) => { setPassager({ ...passager, a: e.target.value }) }}  type="number"/> 
+                    {/* <select required style={{ width: "100%" }} placeholder="Adultos" onChange={(e) => { console.log(e.target.value); setPassager({ ...passager, a: e.target.value }) }}>
                         <option value="0"></option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -192,12 +192,12 @@ const FormOne = ({ url }) => {
                         <option value="13">13</option>
                         <option value="14">14</option>
                         <option value="15">15</option>
-                    </select>
+                    </select> */}
                 </Grid>
                 <Grid item sm={12}>
                     <label>Numero de Niños</label>
-                    {/* <TextField style={{ width: "100%" }} value={passager.b} placeholder="Niños" onChange={(e) => { setPassager({ ...passager, b: e.target.value }) }} /> */}
-                    <select style={{ width: "100%" }} placeholder="Adultos" onChange={(e) => { console.log(e.target.value); setPassager({ ...passager, b: e.target.value }) }}>
+                    <TextField style={{ width: "100%" }} value={passager.b} placeholder="Niños" onChange={(e) => { setPassager({ ...passager, b: e.target.value }) }} type="number"/>
+                    {/* <select style={{ width: "100%" }} placeholder="Adultos" onChange={(e) => { console.log(e.target.value); setPassager({ ...passager, b: e.target.value }) }}>
                         <option value="0"></option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -214,12 +214,12 @@ const FormOne = ({ url }) => {
                         <option value="13">13</option>
                         <option value="14">14</option>
                         <option value="15">15</option>
-                    </select>
+                    </select> */}
                 </Grid>
                 <Grid item sm={12}>
                 <label>Numero de Adultos mayores</label>
-                    {/* <TextField style={{ width: "100%" }} value={passager.c} placeholder="Adultos mayores" onChange={(e) => { setPassager({ ...passager, c: e.target.value }) }} /> */}
-                    <select style={{ width: "100%" }} placeholder="Adultos" onChange={(e) => { console.log(e.target.value); setPassager({ ...passager, c: e.target.value }) }}>
+                     <TextField style={{ width: "100%" }} value={passager.c} placeholder="Adultos mayores" onChange={(e) => { setPassager({ ...passager, c: e.target.value }) }}  type="number" />
+                    {/* <select style={{ width: "100%" }} placeholder="Adultos" onChange={(e) => { console.log(e.target.value); setPassager({ ...passager, c: e.target.value }) }}>
                         <option value="0"></option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -236,7 +236,7 @@ const FormOne = ({ url }) => {
                         <option value="13">13</option>
                         <option value="14">14</option>
                         <option value="15">15</option>
-                    </select>
+                    </select> */}
                 </Grid>
                 <Grid item sm={12}>
                     <input type="submit" value="Cotizar" className="boton-utravel"></input>

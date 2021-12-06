@@ -5,18 +5,14 @@ import { reactLocalStorage } from 'reactjs-localstorage';
 import { TextField } from '@material-ui/core'
 import Breadcrumb from '../../components/Breadcrum';
 import axios from 'axios'
-
-
+import Dialog from '@mui/material/Dialog';
 import Swal from "sweetalert2";
-
 const DetalleDeProducto = () => {
-
   //useStates
   const [datas, setDatas] = useState([]);
-
   const [local, setLocal] = useState([]);
+  const [open, setOpen] = useState(false)
   useEffect(() => {
-
     if (reactLocalStorage.get('DDV')) {
       setLocal(JSON.parse(reactLocalStorage.get('DDV')));
     } else {
@@ -24,52 +20,43 @@ const DetalleDeProducto = () => {
       setLocal(x)
     }
   }, []);
-
-  useEffect(()=>{
+  useEffect(() => {
     let x = [local.types]
-    x.map((i)=>{
+    x.map((i) => {
       console.log('-------->', i)
     });
   });
-
   const DataPassager = () => {
     //nombre, fecha Nac., género,  email
     let passanger = []
     const [data, setData] = useState([]);
-
     for (let i = 0; i < local.passager; i++) {
-
       passanger.push(
         <Card variant={'outlined'} style={{ padding: "2em" }}>
           <Grid container spacing={2}>
             <Grid item sm="3">Datos del pasajero :</Grid>
             <Grid item sm={3}>
-
               <label for={`pasajero numero ${i + 1} Nombre`} >Nombre *</label>
-              <input style={{width:"100%"}}  required="true" id={`pasajero numero ${i + 1} Nombre`} onChange={(e) => {
+              <input style={{ width: "100%" }} required="true" id={`pasajero numero ${i + 1} Nombre`} onChange={(e) => {
                 let key = e.target.id;
                 let value = e.target.value;
                 setData({ ...data, [key]: value })
-
               }} ></input>
             </Grid>
             <Grid item sm={3}>
               <label for={`pasajero numero ${i + 1} Fecha de nacimiento`} >Fecha de nacimiento *</label>
-              <input data-date-inline-picker="true"  style={{width:"100%"}}  placeholder="Fecha de nacimiento" required="true" type="date" helperText="Fecha de nacimiento" id={`pasajero numero ${i + 1} Fecha de nacimiento`} onChange={(e) => {
+              <input data-date-inline-picker="true" style={{ width: "100%" }} placeholder="Fecha de nacimiento" required="true" type="date" helperText="Fecha de nacimiento" id={`pasajero numero ${i + 1} Fecha de nacimiento`} onChange={(e) => {
                 let key = e.target.id;
                 let value = e.target.value;
                 setData({ ...data, [key]: value })
-
               }}></input  >
-
             </Grid>
             <Grid item sm={3}>
               <label for={`pasajero numero ${i + 1} Sexo`}>Sexo *</label>
-              <select style={{width:"100%"}} required="true" helperText="Sexo" id={`pasajero numero ${i + 1} Sexo`} onChange={(e) => {
+              <select style={{ width: "100%" }} required="true" helperText="Sexo" id={`pasajero numero ${i + 1} Sexo`} onChange={(e) => {
                 let key = e.target.id;
                 let value = e.target.value;
                 setData({ ...data, [key]: value })
-
               }}>
                 <option></option>
                 <option>Masculino</option>
@@ -79,15 +66,11 @@ const DetalleDeProducto = () => {
           </Grid>
         </Card >)
     }
-
     useEffect(() => {
       reactLocalStorage.set("dataPassager", JSON.stringify(data))
     })
-
-
     return passanger;
   }
-
   const createProduct = (e) => {
     e.preventDefault()
     axiosPet()
@@ -98,7 +81,6 @@ const DetalleDeProducto = () => {
     //   },
     //   buttonsStyling: false
     // })
-
     // swalWithBootstrapButtons.fire({
     //   title: '¡Asegurese de que los datos ingresados sean correctos!',
     //   text: "Procederemos a crear el producto!",
@@ -114,11 +96,9 @@ const DetalleDeProducto = () => {
     //       'Su producto esta listo.',
     //       'success'
     //     )
-        
     //   }
     // })
   }
-
   const returning = () => {
     let swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -141,86 +121,83 @@ const DetalleDeProducto = () => {
       }
     })
   }
-
   const redirecReturning = () => {
     window.location.href = "/"
   }
   const axiosPet = () => {
     let dataPassager = reactLocalStorage.get('dataPassager')
-
     let dataPurific = dataPassager.replace(/\\/g, "").replace(/\}/g, "").replace(/\{/g, "").replace(/\"/g, "")
-
-    var data = JSON.stringify({
-      "quantity": 1,
-      "name": "Seguro de viajero",
-      "nameTranslated": {
-        "en": "Seguro de viajero",
-        "es": "Seguro de viajero"
-      },
-      "price": local.total,
-      "compareToPrice": local.total,
-      "isShippingRequired": false,
-      "categoryIds": [],
-      "weight": 10,
-      "enabled": true,
-      "description": dataPurific,
-      "productClassId": 0,
-      "created": "2014-01-01",
-      "fixedShippingRateOnly": false,
-      "fixedShippingRate": 1.2,
-      "options": [
-        {
-          "type": "RADIO",
-          "name": "Size",
-          "nameTranslated": {
-            "en": "Size",
-            "es": "Tamaño"
-          },
-          "choices": [],
-          "defaultChoice": 0,
-          "required": false
-        }
-      ],
-      "shipping": {
-        "type": "SELECTED_METHODS",
-        "methodMarkup": 0,
-        "flatRate": 0,
-        "disabledMethods": [
-          "1396442138-1534946367952"
-        ],
-        "enabledMethods": []
-      }
-    });
-
-    var config = {
-      method: 'post',
-      url: 'https://app.ecwid.com/api/v3/66828634/products?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: data
-    };
-
-    axios(config)
-      .then(function (response) {
-        redirect(response.data.id)
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
+    console.log(dataPurific)
+   
+    // var data = JSON.stringify({
+    //   "quantity": 1,
+    //   "name": "Seguro de viajero",
+    //   "nameTranslated": {
+    //     "en": "Seguro de viajero",
+    //     "es": "Seguro de viajero"
+    //   },
+    //   "price": local.total,
+    //   "compareToPrice": local.total,
+    //   "isShippingRequired": false,
+    //   "categoryIds": [],
+    //   "weight": 10,
+    //   "enabled": true,
+    //   "description": dataPurific,
+    //   "productClassId": 0,
+    //   "created": "2014-01-01",
+    //   "fixedShippingRateOnly": false,
+    //   "fixedShippingRate": 1.2,
+    //   "options": [
+    //     {
+    //       "type": "RADIO",
+    //       "name": "Size",
+    //       "nameTranslated": {
+    //         "en": "Size",
+    //         "es": "Tamaño"
+    //       },
+    //       "choices": [],
+    //       "defaultChoice": 0,
+    //       "required": false
+    //     }
+    //   ],
+    //   "shipping": {
+    //     "type": "SELECTED_METHODS",
+    //     "methodMarkup": 0,
+    //     "flatRate": 0,
+    //     "disabledMethods": [
+    //       "1396442138-1534946367952"
+    //     ],
+    //     "enabledMethods": []
+    //   }
+    // });
+    // var config = {
+    //   method: 'post',
+    //   url: 'https://app.ecwid.com/api/v3/66828634/products?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   data: data
+    // };
+    // axios(config)
+    //   .then(function (response) {
+    //     redirect(response.data.id)
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   }
 
   const redirect = (id) => {
+    window.location.href = `https://panel.bilda.bar/site/ece4ebdd/ecommerce/Seguro-de-viajero-p${id}?preview=true&nee=true&showOriginal=true&dm_checkSync=1&dm_try_mode=true&dm_device=desktop`
+  }
+  const redirects = (id) => {
     var config = {
       method: 'get',
       url: `https://app.ecwid.com/api/v3/66828634/products/${id}?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf`,
       headers: {
         'Content-Type': 'application/json'
       },
-
     };
-
     axios(config)
       .then(function (response) {
         window.location.href = response.data.url
@@ -229,6 +206,13 @@ const DetalleDeProducto = () => {
         console.log(error);
       });
   }
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
+  };
 
 
   return (
@@ -245,15 +229,18 @@ const DetalleDeProducto = () => {
         </Grid>
         <Grid item sm={7} >
           <Card style={{ padding: ".5em" }}>
-            <p>Saliendo de :</p>
-            <p>{local.salida}</p>
-            <p>Llegando a :</p>
-            <p>{local.llegada}</p>
-            <p>Fecha de salida :</p>
-            <p>{local.Dsalida}</p>
-            <p>Fecha de regreso :</p>
-            <p>{local.Dregreso}</p>
-
+            <div className="fechas-utravel">
+              <p className="lugar-utravel">Saliendo de :</p>
+              <p className="luocal-utravel">{local.salida}</p>
+              <p className="lugar-utravel">Llegando a :</p>
+              <p className="luocal-utravel">{local.llegada}</p>
+            </div>
+            <div className="fechas-utravel-01">
+              <p className="lugar-utravel">Fecha de salida :</p>
+              <p className="luocal-utravel">{local.Dsalida}</p>
+              <p className="lugar-utravel">Fecha de regreso :</p>
+              <p className="luocal-utravel">{local.Dregreso}</p>
+            </div>
           </Card>
         </Grid>
         <Grid item sm={12}>
@@ -262,27 +249,33 @@ const DetalleDeProducto = () => {
               <Grid item sm={12} style={{ marginBottom: "2em" }}>
                 <form onSubmit={createProduct}>
                   <DataPassager />
-
                   <Grid container>
-                    <Grid item>
-                      <button onClick={redirecReturning}>Volver</button>
-                    </Grid>
-                    <Grid item>
-                      <input type="submit" value="Seguir" style={{color:"#000"}}></input>
+                    <div className="botones-utravel">
+                      <div className="volver-utravel">
+                        <Grid item sm={6}>
+                          <button onClick={redirecReturning}>Volver</button>
+                        </Grid>
+                      </div>
+                      <div className="seguir-utravel">
+                        <Grid item sm={6}>
+                          <input type="submit" value="Seguir" style={{ color: "#000" }}></input>
+                        </Grid>
+                      </div>
+                    </div>
+                    <Grid item sm={12}>
+                      <Dialog open={open} width={700} style={{backgroundColor: "#000"}} onClose={handleClose}>
+                        <iframe style={{ width: "100%", height: "100vh" }} src="https://irp.cdn-website.com/ece4ebdd/files/uploaded/Poliza.pdf"></iframe>
+                      </Dialog>
+                      {/* <a onClick={handleClickOpen}>Cobertura</a> */}
                     </Grid>
                   </Grid>
                 </form>
               </Grid>
             </Grid>
-
           </Card>
         </Grid>
       </Grid>
     </>
   );
-
-
 }
-
-
 export default DetalleDeProducto;

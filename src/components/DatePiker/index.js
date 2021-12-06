@@ -8,16 +8,14 @@ export default ({ placeholder, change, min}) => {
     let mont = parseInt(Dates.split('-')[1])
     let year = parseInt(Dates.split('-')[0])
 
-    const [today, setToday] = useState(`${year}-${mont}-${day}`);
+    const [today, setToday] = useState(`${year}-${mont > 10 ? mont  : '0'+ mont }-${day > 10 ? day : '0'+ day}`);
     useEffect(() => {
-
-
-        console.log("")
+        
     });
     return (
         <>
-            <label for="date">{placeholder} : </label>
-            <input required min={min} type="date" id="date" onChange={(e) => {
+            <label for="date">{placeholder} :</label>
+            <input required min={today} type="date" id="date" onChange={(e) => {
 
                 var fecha1 = moment('2016-07-12');
                 var fecha2 = moment(e.target.value);

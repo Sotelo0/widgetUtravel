@@ -1,99 +1,115 @@
 * {
-
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  body {
+}
+
+body {
     font-family: 'Source Sans Pro' !important;
-    font: 20px  sans-serif;
+    font: 20px sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-  }
-  
-  .breadcrumb li{
-    float:right;
-    padding:5px;
-    border-radius:50px;
-    position:relative;
-    margin-left:-50px;
-    margin-top:3px;
-    background:#fff5e6;
-    transition:all 0.2s ease-in-out;
-    
-  }
-  .breadcrumb li a{
-    
-    overflow:hidden;
-    border-radius:50px;
-     transition:all 0.2s ease-in-out;
-    text-decoration:none;
-    width:80px;
-    height:50px;
-    color:red;
-    background:#ffd699;
-    text-align:center;
-    display:block;
-    line-height:50px;
-    padding-left:52px;
-    padding-right:33.33px;
-    
-  }
-  .breadcrumb li a .icon{
-    display:inline-block;
-  
-  }
-  .breadcrumb li a .text{
-    display:none;
-    opacity:0;
-  }
-  .breadcrumb li a:hover{
-    width:150px;
-    background:#ffccff;
-  }
-  .breadcrumb li a:hover .text{
-    display:inline-block;
-    opacity:1;
-  }
-  .breadcrumb li:last-child a{
-    padding:0;
-  }
-  .breadcrumb li:last-child:hover{
-    padding:3px;
-    margin-top:0;
-  }
-  
-  .breadcrumb li:last-child:hover a{
-    width:100px;
-    height:60px;
-    line-height:60px;
-  }
-  /***estilos Cotizador***/
+}
+
+.breadcrumb li {
+    float: right;
+    padding: 5px;
+    border-radius: 50px;
+    position: relative;
+    margin-left: -50px;
+    margin-top: 3px;
+    background: #fff5e6;
+    transition: all 0.2s ease-in-out;
+}
+
+.breadcrumb li a {
+    overflow: hidden;
+    border-radius: 50px;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    width: 80px;
+    height: 50px;
+    color: red;
+    background: #ffd699;
+    text-align: center;
+    display: block;
+    line-height: 50px;
+    padding-left: 52px;
+    padding-right: 33.33px;
+}
+
+.breadcrumb li a .icon {
+    display: inline-block;
+}
+
+.breadcrumb li a .text {
+    display: none;
+    opacity: 0;
+}
+
+.breadcrumb li a:hover {
+    width: 150px;
+    background: #ffccff;
+}
+
+.breadcrumb li a:hover .text {
+    display: inline-block;
+    opacity: 1;
+}
+
+.breadcrumb li:last-child a {
+    padding: 0;
+}
+
+.breadcrumb li:last-child:hover {
+    padding: 3px;
+    margin-top: 0;
+}
+
+.breadcrumb li:last-child:hover a {
+    width: 100px;
+    height: 60px;
+    line-height: 60px;
+}
+
+
+/***estilos Cotizador***/
+
 button.boton-utravel {
     font-size: 1.5rem;
     background-color: #78158c;
     color: #ffffff;
     padding: 15px 20px;
     border-radius: 5px;
-    border:none;
-  }
-  button.boton-utravel:hover {
+    border: none;
+}
+
+button.boton-utravel:hover {
     background-color: #e60013;
-  }
-  .MuiInput-underline::after {
+}
+
+.MuiInput-underline::after {
     border-bottom: solid 1px #78158c !important;
-  }
-  .MuiInput-underline::before {
+}
+
+.MuiInput-underline::before {
     border-bottom: solid 1px #e60013 !important;
-  }
-  input[type="date"] {
+}
+
+input[type="date"] {
     padding: 15px 10px;
     line-height: 30px;
     height: 30px;
-  }
-  .MuiInputBase-input::placeholder {
+}
+
+.MuiInputBase-input::placeholder {
     opacity: 0.85 !important;
-  }
- 
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+} 
