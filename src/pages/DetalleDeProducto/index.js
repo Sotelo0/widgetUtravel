@@ -417,7 +417,7 @@ const DetalleDeProducto = () => {
           </Card>
         </Grid>
         <Grid item sm={12}>
-          <p className="copys">Para continuar y poder contratar tu seguro  llena los datos (del) o (los) pasajero</p>
+          <p className="copys">Para continuar y poder contratar tu seguro  llena los datos (del) o (los) pasajeros</p>
           <Card variant={"outlined"} style={{ padding: ".5em" }}>
             <Grid container style={{ padding: "2em", height: "50vh", overflowY: "scroll" }}>
               <Grid item sm={12} style={{ marginBottom: "2em" }}>
@@ -432,7 +432,7 @@ const DetalleDeProducto = () => {
                       </div>
                       <div className="seguir-utravel">
                         <Grid item sm={6}>
-                          <input type="submit" value="Seguir" style={{ color: "#000" }}></input>
+                          <input type="submit" value="Continuar" style={{ color: "#000" }}></input>
                         </Grid>
                       </div>
                     </div>
