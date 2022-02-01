@@ -296,62 +296,63 @@ const DetalleDeProducto = () => {
     let dataPurific = dataPassager.replace(/\\/g, "").replace(/\}/g, "").replace(/\{/g, "").replace(/\"/g, "")
     console.log(dataPurific)
 
-    // var data = JSON.stringify({
-    //   "quantity": 1,
-    //   "name": "Seguro de viajero",
-    //   "nameTranslated": {
-    //     "en": "Seguro de viajero",
-    //     "es": "Seguro de viajero"
-    //   },
-    //   "price": local.total,
-    //   "compareToPrice": local.total,
-    //   "isShippingRequired": false,
-    //   "categoryIds": [],
-    //   "weight": 10,
-    //   "enabled": true,
-    //   "description": dataPurific,
-    //   "productClassId": 0,
-    //   "created": "2014-01-01",
-    //   "fixedShippingRateOnly": false,
-    //   "fixedShippingRate": 1.2,
-    //   "options": [
-    //     {
-    //       "type": "RADIO",
-    //       "name": "Size",
-    //       "nameTranslated": {
-    //         "en": "Size",
-    //         "es": "Tamaño"
-    //       },
-    //       "choices": [],
-    //       "defaultChoice": 0,
-    //       "required": false
-    //     }
-    //   ],
-    //   "shipping": {
-    //     "type": "SELECTED_METHODS",
-    //     "methodMarkup": 0,
-    //     "flatRate": 0,
-    //     "disabledMethods": [
-    //       "1396442138-1534946367952"
-    //     ],
-    //     "enabledMethods": []
-    //   }
-    // });
-    // var config = {
-    //   method: 'post',
-    //   url: 'https://app.ecwid.com/api/v3/66828634/products?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   data: data
-    // };
-    // axios(config)
-    //   .then(function (response) {
-    //     redirect(response.data.id)
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+    var data = JSON.stringify({
+      "quantity": 1,
+      "name": "Seguro de viajero",
+      "nameTranslated": {
+        "en": "Seguro de viajero",
+        "es": "Seguro de viajero"
+      },
+      "price": local.total,
+      "compareToPrice": local.total,
+      "isShippingRequired": false,
+      "categoryIds": [],
+      "weight": 10,
+      "enabled": true,
+      "description": dataPurific,
+      "productClassId": 0,
+      "created": "2014-01-01",
+      "fixedShippingRateOnly": false,
+      "fixedShippingRate": 1.2,
+      "options": [
+        {
+          "type": "RADIO",
+          "name": "Size",
+          "nameTranslated": {
+            "en": "Size",
+            "es": "Tamaño"
+          },
+          "choices": [],
+          "defaultChoice": 0,
+          "required": false
+        }
+      ],
+      "shipping": {
+        "type": "SELECTED_METHODS",
+        "methodMarkup": 0,
+        "flatRate": 0,
+        "disabledMethods": [
+          "1396442138-1534946367952"
+        ],
+        "enabledMethods": []
+      }
+    });
+    var config = {
+      method: 'post',
+      url: 'https://app.ecwid.com/api/v3/66828634/products?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+    axios(config)
+      .then(function (response) {
+        setImage(response.data.id)
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   const redirect = (id) => {
@@ -381,6 +382,25 @@ const DetalleDeProducto = () => {
     setOpen(false);
   };
 
+//https://app.ecwid.com/api/v3/66828634/products/439498593/image?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf&externalUrl=https://irp.cdn-website.com/ece4ebdd/dms3rep/multi/Utravel+mx.png
+  const setImage = (id) => {
+    var config = {
+      method: 'post',
+      url: `https://app.ecwid.com/api/v3/66828634/products/${id}/image?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf&externalUrl=https://irp.cdn-website.com/ece4ebdd/dms3rep/multi/Utravel+mx.png`,
+      headers: {
+        'Content-Type': 'image/png'
+      },
+      data: data
+    };
+
+    axios(config)
+      .then(function (response) {
+        redirect(response.data.id)
+      })
+      .catch(function (error) {
+        redirect(response.data.id)
+      });
+  }
 
   return (
     <>
