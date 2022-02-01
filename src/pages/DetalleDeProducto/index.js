@@ -440,7 +440,7 @@ const DetalleDeProducto = () => {
                       <p className="copys">Con nuestra cobertura te protegemos para que viajes tranquilo y sin preocupaciones.</p>
                       <Grid item sm={6}>
                         <div className="seguir-cobertura">
-                          <input type="button" value="Cobertura" />
+                          <input type="button" value="Ver cobertura" />
                         </div>
                       </Grid>
                       <Dialog open={open} width={700} style={{ backgroundColor: "#000" }} onClose={handleClose}>
