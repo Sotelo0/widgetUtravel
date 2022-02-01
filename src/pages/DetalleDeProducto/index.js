@@ -399,7 +399,7 @@ const DetalleDeProducto = () => {
             <h1>$ {local.total}</h1>
           </Card>
         </Grid>
-        
+
         <Grid item sm={7} >
           <Card style={{ padding: ".5em" }}>
             <div className="fechas-utravel">
@@ -417,7 +417,7 @@ const DetalleDeProducto = () => {
           </Card>
         </Grid>
         <Grid item sm={12}>
-        <p className="copys">Para continuar y poder contratar tu seguro  llena los datos (del) o (los) pasajero</p>
+          <p className="copys">Para continuar y poder contratar tu seguro  llena los datos (del) o (los) pasajero</p>
           <Card variant={"outlined"} style={{ padding: ".5em" }}>
             <Grid container style={{ padding: "2em", height: "50vh", overflowY: "scroll" }}>
               <Grid item sm={12} style={{ marginBottom: "2em" }}>
@@ -437,7 +437,12 @@ const DetalleDeProducto = () => {
                       </div>
                     </div>
                     <Grid item sm={12}>
-                    <p className="copys">Con nuestra cobertura te protegemos para que viajes tranquilo y sin preocupaciones.</p>
+                      <p className="copys">Con nuestra cobertura te protegemos para que viajes tranquilo y sin preocupaciones.</p>
+                      <Grid item sm={6}>
+                        <div className="seguir-cobertura">
+                          <input type="button" value="Cobertura" />
+                        </div>
+                      </Grid>
                       <Dialog open={open} width={700} style={{ backgroundColor: "#000" }} onClose={handleClose}>
                         <iframe style={{ width: "100%", height: "100vh" }} src="https://irp.cdn-website.com/ece4ebdd/files/uploaded/Poliza.pdf"></iframe>
                       </Dialog>
