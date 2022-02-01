@@ -389,8 +389,7 @@ const DetalleDeProducto = () => {
       url: `https://app.ecwid.com/api/v3/66828634/products/${id}/image?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf&externalUrl=https://irp.cdn-website.com/ece4ebdd/dms3rep/multi/Utravel+mx.png`,
       headers: {
         'Content-Type': 'image/png'
-      },
-      data: data
+      }
     };
 
     axios(config)
@@ -398,7 +397,7 @@ const DetalleDeProducto = () => {
         redirect(response.data.id)
       })
       .catch(function (error) {
-        redirect(response.data.id)
+        console.log(error);
       });
   }
 
