@@ -385,6 +385,10 @@ const DetalleDeProducto = () => {
   return (
     <>
       <Grid container spacing={3} style={{ padding: "1em" }}>
+
+        <Grid item xs={12}>
+          <div className="imgBack"></div>
+        </Grid>
         <Grid item sm={12} >
           <Breadcrumb></Breadcrumb>
           <p className="copys">Gracias por cotizar tu seguro</p>
