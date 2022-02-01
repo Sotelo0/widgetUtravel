@@ -47,7 +47,7 @@ const DetalleDeProducto = () => {
               <Grid container spacing={2}>
                 <Grid item sm={4}>
                   <label for={`pasajero numero ${i + 1}  D`} >Dia *</label>
-                  <select>
+                  <select id={`pasajero numero ${i + 1}  D`}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -85,7 +85,7 @@ const DetalleDeProducto = () => {
                 </Grid>
                 <Grid item sm={4}>
                   <label for={`pasajero numero ${i + 1}  M`} >Mes *</label>
-                  <select>
+                  <select id={`pasajero numero ${i + 1}  M`}> 
                     <option value="Enero">Enero</option>
                     <option value="Febrero">Febrero</option>
                     <option value="Marzo">Marzo</option>
@@ -104,7 +104,7 @@ const DetalleDeProducto = () => {
                 </Grid>
                 <Grid item sm={4}>
                   <label for={`pasajero numero ${i + 1}  A`} >Año *</label>
-                  <select>
+                  <select id={`pasajero numero ${i + 1}  A`} onChange={}>
                     <option value="1930">1930</option>
                     <option value="1931">1931</option>
                     <option value="1932">1932</option>
