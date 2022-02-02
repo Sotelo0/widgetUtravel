@@ -30,6 +30,7 @@ const DetalleDeProducto = () => {
     //nombre, fecha Nac., género,  email
     let passanger = []
     const [data, setData] = useState([]);
+    const [passangers, setPassangers] = useState([])
     for (let i = 0; i < local.passager; i++) {
       passanger.push(
         <Card variant={'outlined'} style={{ padding: "2em" }}>
@@ -41,6 +42,7 @@ const DetalleDeProducto = () => {
                 let key = e.target.id;
                 let value = e.target.value;
                 setData({ ...data, [key]: value })
+                setPassangers({ ...passangers, [key]: value })
               }} ></input>
             </Grid>
             <Grid item sm={6}>
@@ -235,6 +237,7 @@ const DetalleDeProducto = () => {
     }
     useEffect(() => {
       reactLocalStorage.set("dataPassager", JSON.stringify(data))
+      reactLocalStorage.set("passangers", JSON.stringify(passangers))
     })
     return passanger;
   }
@@ -292,7 +295,7 @@ const DetalleDeProducto = () => {
     window.location.href = "/"
   }
   const axiosPet = () => {
-    let dataPassager = reactLocalStorage.get('dataPassager')
+    let dataPassager = reactLocalStorage.get('passangers')
     let dataPurific = dataPassager.replace(/\\/g, "").replace(/\}/g, "").replace(/\{/g, "").replace(/\"/g, "")
     console.log(dataPurific)
 
@@ -348,7 +351,7 @@ const DetalleDeProducto = () => {
     axios(config)
       .then(function (response) {
         setImage(response.data.id)
-        
+
       })
       .catch(function (error) {
         console.log(error);
@@ -356,7 +359,8 @@ const DetalleDeProducto = () => {
   }
 
   const redirect = (id) => {
-    window.location.href = `https://panel.bilda.bar/site/ece4ebdd/ecommerce/Seguro-de-viajero-p${id}?preview=true&nee=true&showOriginal=true&dm_checkSync=1&dm_try_mode=true&dm_device=desktop`
+    console.log(id)
+    window.location.href = `http://utravel.bilda.bar/ecommerce/Seguro-de-viajero-p${id}`
   }
   const redirects = (id) => {
     var config = {
@@ -368,7 +372,8 @@ const DetalleDeProducto = () => {
     };
     axios(config)
       .then(function (response) {
-        window.location.href = response.data.url
+        console.log(response)
+        //window.location.href = response.data.url
       })
       .catch(function (error) {
         console.log(error);
@@ -382,7 +387,7 @@ const DetalleDeProducto = () => {
     setOpen(false);
   };
 
-//https://app.ecwid.com/api/v3/66828634/products/439498593/image?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf&externalUrl=https://irp.cdn-website.com/ece4ebdd/dms3rep/multi/Utravel+mx.png
+  //https://app.ecwid.com/api/v3/66828634/products/439498593/image?token=secret_82ymxuGscWx5n1C9Mr9vM1vxj3hhKGyf&externalUrl=https://irp.cdn-website.com/ece4ebdd/dms3rep/multi/Utravel+mx.png
   const setImage = (id) => {
     var config = {
       method: 'post',
@@ -394,7 +399,8 @@ const DetalleDeProducto = () => {
 
     axios(config)
       .then(function (response) {
-        redirect(response.data.id)
+        console.log(response)
+        redirect(id)
       })
       .catch(function (error) {
         console.log(error);
@@ -415,7 +421,8 @@ const DetalleDeProducto = () => {
         <Grid item sm={4} >
           <Card variant={"outlined"} style={{ padding: ".5em" }}>
             <p>Precio del seguro</p>
-            <h1>$ {local.total}</h1>
+            <h1>$ {String(new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'MXN' }).format(local.total)).replace('MX$', '')} MXN</h1>
+            {/*  console.log(new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'MXN' }).format(number));  */}
           </Card>
         </Grid>
 
