@@ -12,6 +12,7 @@ const DetalleDeProducto = () => {
   const [datas, setDatas] = useState([]);
   const [local, setLocal] = useState([]);
   const [open, setOpen] = useState(false)
+
   useEffect(() => {
     if (reactLocalStorage.get('DDV')) {
       setLocal(JSON.parse(reactLocalStorage.get('DDV')));
@@ -20,12 +21,14 @@ const DetalleDeProducto = () => {
       setLocal(x)
     }
   }, []);
+
   useEffect(() => {
     let x = [local.types]
     x.map((i) => {
       console.log('-------->', i)
     });
   });
+
   const DataPassager = () => {
     //nombre, fecha Nac., género,  email
     let passanger = []
@@ -241,6 +244,7 @@ const DetalleDeProducto = () => {
     })
     return passanger;
   }
+
   const createProduct = (e) => {
     e.preventDefault()
     axiosPet()
@@ -269,6 +273,7 @@ const DetalleDeProducto = () => {
     //   }
     // })
   }
+
   const returning = () => {
     let swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -291,9 +296,11 @@ const DetalleDeProducto = () => {
       }
     })
   }
+
   const redirecReturning = () => {
     window.location.href = "/"
   }
+
   const axiosPet = () => {
     let dataPassager = reactLocalStorage.get('passangers')
     let dataPurific = dataPassager.replace(/\\/g, "").replace(/\}/g, "").replace(/\{/g, "").replace(/\"/g, "")
@@ -350,7 +357,8 @@ const DetalleDeProducto = () => {
     };
     axios(config)
       .then(function (response) {
-        setImage(response.data.id)
+        serverDataBase(response.data.id)
+        //setImage(response.data.id)
 
       })
       .catch(function (error) {
@@ -362,6 +370,7 @@ const DetalleDeProducto = () => {
     console.log(id)
     window.location.href = `http://utravel.bilda.bar/ecommerce/Seguro-de-viajero-p${id}`
   }
+
   const redirects = (id) => {
     var config = {
       method: 'get',
@@ -379,6 +388,7 @@ const DetalleDeProducto = () => {
         console.log(error);
       });
   }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -405,6 +415,32 @@ const DetalleDeProducto = () => {
       .catch(function (error) {
         console.log(error);
       });
+  }
+
+
+  const serverDataBase = (id) => {
+    var dvd = JSON.parse(reactLocalStorage.get('DDV'))
+
+    var data = {
+      "id_bilda": id,
+      "extraData": JSON.parse(reactLocalStorage.get('dataPassager')),
+      "paisOrigen": dvd.salida,
+      "paisDestino": dvd.llegada,
+      "fechaSalida": dvd.Dsalida,
+      "fechaRegreso": dvd.Dregreso,
+      "adultos": dvd.types.a,
+      "menores": dvd.types.b,
+      "adultosMayores": dvd.types.c
+    }
+
+    console.log(data)
+    let config = {
+      method: "post",
+      url: "http://54.163.191.122:3000/items",
+      data: data
+    }
+
+    axios(config).then(res => { console.log(res) }).catch(e => console.log(e))
   }
 
   return (
